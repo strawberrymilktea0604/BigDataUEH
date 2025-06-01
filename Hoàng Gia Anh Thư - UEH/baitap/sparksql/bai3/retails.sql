@@ -1,17 +1,12 @@
--- Tạo database
 CREATE DATABASE retails;
 GO
 
--- Sử dụng database
 USE retails;
 GO
 
--- Xóa table nếu tồn tại
 DROP TABLE IF EXISTS users;
-GO
 
--- Tạo table users
-CREATE TABLE users(
+CREATE TABLE users (
     user_id INT,
     user_first_name VARCHAR(30),
     user_last_name VARCHAR(30),
@@ -20,11 +15,9 @@ CREATE TABLE users(
     user_unique_id VARCHAR(15),
     user_phone_no VARCHAR(20),
     user_dob DATE,
-    created_ts DATETIME2
+    created_ts DATETIME
 );
-GO
 
--- Insert dữ liệu
 INSERT INTO users VALUES
 (1, 'Giuseppe', 'Bode', 'gbode0@imgur.com', 'M', '88833-8759', '+86 (764) 443-1967', '1973-05-31', '2018-04-15 12:13:38'),
 (2, 'Lexy', 'Gisbey', 'lgisbey1@mail.ru', 'F', '262501-029', '+86 (751) 160-3742', '2003-05-31', '2020-12-29 06:44:09'),
@@ -46,13 +39,30 @@ INSERT INTO users VALUES
 (18, 'Blair', 'Aumerle', 'baumerleh@toplist.cz', 'F', '430-01-578-5', '+7 (393) 232-1860', '1979-11-09', '2018-10-28 19:25:35'),
 (19, 'Pavlov', 'Steljes', 'psteljesi@macromedia.com', 'F', '571-09-6181', '+598 (877) 881-3236', '1991-06-24', '2020-09-18 05:34:31'),
 (20, 'Darn', 'Hadeke', 'dhadekej@last.fm', 'M', '478-32-02-87', '+370 (347) 110-4270', '1984-09-04', '2018-02-10 12:56:00'),
-(21, 'Wendell', 'Spanton', 'wspantonk@de.vu', 'F', null, '+84 (301) 762-1316', '1973-07-24', '2018-01-30 01:20:11'),
-(22, 'Carlo', 'Yearby', 'cyearbyl@comcast.net', 'F', null, '+55 (288) 623-4067', '1974-11-11', '2018-06-24 03:18:40'),
-(23, 'Sheila', 'Evitts', 'sevittsm@webmd.com', null, '830-40-5287', null, '1977-03-01', '2020-07-20 09:59:41'),
-(24, 'Sianna', 'Lowdham', 'slowdhamn@stanford.edu', null, '778-0845', null, '1985-12-23', '2018-06-29 02:42:49'),
+(21, 'Wendell', 'Spanton', 'wspantonk@de.vu', 'F', NULL, '+84 (301) 762-1316', '1973-07-24', '2018-01-30 01:20:11'),
+(22, 'Carlo', 'Yearby', 'cyearbyl@comcast.net', 'F', NULL, '+55 (288) 623-4067', '1974-11-11', '2018-06-24 03:18:40'),
+(23, 'Sheila', 'Evitts', 'sevittsm@webmd.com', NULL, '830-40-5287', NULL, '1977-03-01', '2020-07-20 09:59:41'),
+(24, 'Sianna', 'Lowdham', 'slowdhamn@stanford.edu', NULL, '778-0845', NULL, '1985-12-23', '2018-06-29 02:42:49'),
 (25, 'Phylys', 'Aslie', 'paslieo@qq.com', 'M', '368-44-4478', '+86 (765) 152-8654', '1984-03-22', '2019-10-01 01:34:28');
 GO
 
--- Kiểm tra kết quả
+
 SELECT TOP 10 * FROM users;
 GO
+
+DROP TABLE IF EXISTS order_items;
+CREATE TABLE order_items (
+    order_item_id INT PRIMARY KEY,
+    order_item_order_id INT,
+    order_item_product_id INT,
+    order_item_quantity INT,
+    order_item_subtotal DECIMAL(10,2),
+    order_item_product_price DECIMAL(10,2)
+);
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    order_date DATE,
+    order_customer_id INT,
+    order_status VARCHAR(50)
+);
