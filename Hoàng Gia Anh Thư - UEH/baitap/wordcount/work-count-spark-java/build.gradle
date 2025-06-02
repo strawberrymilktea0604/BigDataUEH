@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+// Set main class
+application {
+    mainClass = 'vn.edu.ueh.bit.WordCounter'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.spark:spark-core_2.13:3.5.5'
+}
+
+// Java version
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+application {
+    mainClass = 'vn.edu.ueh.bit.WordCounter'
+}
